@@ -76,13 +76,15 @@ public class CliOptions {
         options.addOption("np", "non_persistent", false, "remove persistence from message sending");
         options.addOption("port", "port", true, "port to connect to message bus, default is 5672");
         options.addOption("vh", "virtual_host", true, "virtual host to connect to (optional)");
-        options.addOption("tls", "tls", true, "tls version, specify a valid tls version: '1', '1.1, '1.2' or 'default'. It is required for RabbitMq secured port.");
+        options.addOption("tls", "tls", true, "tls version, specify a valid tls version: '1.2' or 'default'. It is required for RabbitMq secured port.");
         options.addOption("mp", "messaging_protocol", true, "name of messaging protocol to be used, e.g. eiffel3, eiffelsemantics, default is eiffelsemantics");
         options.addOption("domain", "domainId", true, "identifies the domain that produces the event");
         options.addOption("cc", "channelsCount", true, "Number of channels connected to message bus, default is 1");
         options.addOption("ud", "user_domain_suffix", true, "user domain suffix");
         options.addOption("v", "lists the versions of publish and all loaded protocols");
         options.addOption("tag", "tag", true, "tag to be used in routing key");
+        options.addOption("un", "username", true, "username to connect to message bus");
+        options.addOption("pwd", "password", true, "password to connect to message bus");
         options.addOption("rk", "routing_key", true, "routing key of the eiffel message. When provided routing key is not generated and the value provided is used.");
 
         contentGroup = createContentGroup();
@@ -225,13 +227,25 @@ public class CliOptions {
             String key = PropertiesConfig.CHANNELS_COUNT;
             System.setProperty(key, channelsCount);
         }
+ 
+        if (commandLine.hasOption("username")) {
+            String usernm = commandLine.getOptionValue("username");
+            String key = PropertiesConfig.USERNAME;
+            System.setProperty(key, usernm);
+        }
+
+        if (commandLine.hasOption("password")) {
+            String passwd = commandLine.getOptionValue("password");
+            String key = PropertiesConfig.PASSWORD;
+            System.setProperty(key, passwd);
+        }
 
         if (commandLine.hasOption("tls")) {
             String tls_ver = commandLine.getOptionValue("tls");
             if (tls_ver == null) {
                 tls_ver = "NULL";
             }
-            String[] validTlsVersions = new String[]{"1", "1.1", "1.2", "default"};
+            String[] validTlsVersions = new String[]{"1.2", "default"};
             if (!ArrayUtils.contains(validTlsVersions, tls_ver)) {
                 throw new HandleMessageBusException("Specified TLS version is not valid! Specify a valid TLS version!");
             }
@@ -273,6 +287,8 @@ public class CliOptions {
         System.clearProperty(PropertiesConfig.TLS);
         System.clearProperty(PropertiesConfig.DOMAIN_ID);
         System.clearProperty(PropertiesConfig.CHANNELS_COUNT);
+        System.clearProperty(PropertiesConfig.USERNAME);
+        System.clearProperty(PropertiesConfig.PASSWORD);
     }
 
     /**

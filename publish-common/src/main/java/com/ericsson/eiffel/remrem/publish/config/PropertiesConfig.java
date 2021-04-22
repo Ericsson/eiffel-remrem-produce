@@ -19,6 +19,8 @@ public class PropertiesConfig {
     public static final String MESSAGE_BUS_PORT = "com.ericsson.eiffel.remrem.publish.messagebus.port";
     public static final String VIRTUAL_HOST = "com.ericsson.eiffel.remrem.publish.messagebus.virtualhost";
     public static final String CHANNELS_COUNT = "com.ericsson.eiffel.remrem.publish.messagebus.channels";
+    public static final String USERNAME = "com.ericsson.eiffel.remrem.publish.messagebus.username";
+    public static final String PASSWORD = "com.ericsson.eiffel.remrem.publish.messagebus.password";
     public static final String TLS = "com.ericsson.eiffel.remrem.publish.messagebus.tls";
     public static final String EXCHANGE_NAME = "com.ericsson.eiffel.remrem.publish.exchange.name";
     public static final String USE_PERSISTENCE = "com.ericsson.eiffel.remrem.publish.use.persistence";

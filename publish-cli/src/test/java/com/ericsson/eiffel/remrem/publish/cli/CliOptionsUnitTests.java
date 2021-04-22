@@ -66,7 +66,7 @@ public class CliOptionsUnitTests {
 
     @Test
     public void testTlsOption() throws Exception {
-        String[] args = {"-f", "/a/b/c/test.file",  "test", "-tls", "1"};
+        String[] args = {"-f", "/a/b/c/test.file",  "test", "-tls", "1.2"};
         CliOptions.parse(args);
         assertTrue(CliOptions.getErrorCodes().isEmpty());
     }

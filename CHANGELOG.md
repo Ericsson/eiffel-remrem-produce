@@ -3,6 +3,8 @@
   requests are sent to /generateAndPublish endpoint.
 - Uplifted eiffel-remrem-parent version from 2.0.4 to 2.0.5
 - Uplifted eiffel-remrem-shared version from 2.0.4 to 2.0.5
+- Added two external parameters to send username and password to connect to Messagebus.
+- Removed TLS Versions 1 and 1.1 as they are deprecated
 
 ## 2.0.19
 - Added the lenientValidation parameter(okToLeaveOutInvalidOptionalFields) for /generateAndPublish 

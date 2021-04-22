@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeoutException;
@@ -284,11 +285,17 @@ public class RabbitMqProperties {
         port = Integer.getInteger(PropertiesConfig.MESSAGE_BUS_PORT);
         virtualHost = getValuesFromSystemProperties(PropertiesConfig.VIRTUAL_HOST);
         domainId = getValuesFromSystemProperties(PropertiesConfig.DOMAIN_ID);
+        username = getValuesFromSystemProperties(PropertiesConfig.USERNAME);
+        password = decryptString(getValuesFromSystemProperties(PropertiesConfig.PASSWORD));
         channelsCount = Integer.getInteger(PropertiesConfig.CHANNELS_COUNT);
         tlsVer = getValuesFromSystemProperties(PropertiesConfig.TLS);
         exchangeName = getValuesFromSystemProperties(PropertiesConfig.EXCHANGE_NAME);
         usePersitance = Boolean.getBoolean(PropertiesConfig.USE_PERSISTENCE);
         createExchangeIfNotExisting = Boolean.parseBoolean(getValuesFromSystemProperties(PropertiesConfig.CREATE_EXCHANGE_IF_NOT_EXISTING));
+    }
+
+    private String decryptString(String password) {
+        return new String(Base64.getDecoder().decode(password));
     }
 
     private String getValuesFromSystemProperties(String propertyName) {

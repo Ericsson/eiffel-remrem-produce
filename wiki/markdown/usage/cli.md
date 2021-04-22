@@ -35,9 +35,14 @@ usage: java -jar
 -mp,--message_protocol <arg>      Name of messaging protocol to be used, e.g: eiffelsemantics.
                                   Default is eiffelsemantics.
 
+-un,--username <arg>              Username to connect to Messagebus
+
+-pwd,--password <arg>             Encrypted Password to connect to MessageBus. Plaintext password
+                                  should be encrypted using Base64 Encryption Mechanism.
+
 -np,--non_persistent              Remove persistence from message sending.
 
--tls,--tls <arg>                  tls version, specify a valid tls version: '1', '1.1', '1.2' or default.
+-tls,--tls <arg>                  tls version, specify a valid tls version: '1.2' or default.
                                   It is required for RabbitMQ secured port (5671).
 
 -port,--port <arg>                Port to connect to message bus, default is 5672.
@@ -66,19 +71,19 @@ Typical examples of usage Eiffel REMReM Publish CLI are described below.
 **Publish on a given host, given exchange, given domain and given user domain suffix:**
 
 ```
-java -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -domain publish-domain -ud messageQueue -mp eiffelsemantics
+java -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -domain publish-domain -ud messageQueue -mp eiffelsemantics -un username -pwd password
 ```
 
 **If you want to have the message non persistent add np flag:**
 
 ```
-java -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -domain publish-domain -np -mp eiffelsemantics
+java -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -domain publish-domain -np -mp eiffelsemantics -un username -pwd password 
 ```
 
 **For loading protocol jars other than eiffelsemantics:**
 
 ```
-java -Djava.ext.dirs="/path/to/jars/" -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -domain publish-domain -mp protocolType
+java -Djava.ext.dirs="/path/to/jars/" -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -domain publish-domain -mp protocolType -un username -pwd password
 ```
 
 **NOTE:** in the above example, protocol jar file must be present inside *"/path/to/jars/"* folder.
@@ -88,7 +93,7 @@ java -Djava.ext.dirs="/path/to/jars/" -jar publish-cli.jar -f publishMessages.js
 **If you want to have the message publishing logs add d flag:**
 
 ```
-java -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -domain publish-domain -mp eiffelsemantics -d
+java -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -domain publish-domain -mp eiffelsemantics -un username -pwd password -d
 ```
 
 **If you want to have the message publishing on RabbitMQ secured port (5671):**
@@ -96,7 +101,7 @@ java -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -
 -tls option value is either 'default' or <version> for secured port.
 
 ```
-java -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -domain publish-domain -mp eiffelsemantics -tls 1.2
+java -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -domain publish-domain -mp eiffelsemantics -un username -pwd password -tls 1.2
 ```
 
 **NOTE:** for RabbitMQ default port 5672, no need to pass -tls option.
@@ -104,7 +109,7 @@ java -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -
 **If you want to have the message publishing on RabbitMQ with given routing key:**
 
 ```
-java -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -domain publish-domain -mp eiffelsemantics -rk myroutingkey
+java -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -domain publish-domain -mp eiffelsemantics -rk myroutingkey -un username -pwd password
 ```
 
 **If you want to change the number of channels connected to RabbitMQ to publish messages:**
@@ -112,19 +117,19 @@ channelsCount default value is 1.
 If the number of channels increases then the CPU load and memory usage on the RabbitMq increases.
 
 ```
-java -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -domain publish-domain -mp eiffelsemantics -cc numberof-channels 
+java -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -domain publish-domain -mp eiffelsemantics -cc numberof-channels -un username -pwd password
 ```
 
 **If you want to have the message publishing on RabbitMQ with given tag:**
 
 ```
-java -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -domain publish-domain -mp eiffelsemantics -tag production
+java -jar publish-cli.jar -f publishMessages.json -en mb-exchange -mb hostname -domain publish-domain -mp eiffelsemantics -un username -pwd password -tag production
 ```
 
 **To create an exchange passed while publishing the messages use --create_exchange or -ce property to true. Example:**
 
 ```
-java -jar publish-cli.jar -f EiffelActivityStartedEvent.json -en mb-exchange -ce true -mb hostname -domain publish-domain -mp eiffelsemantics
+java -jar publish-cli.jar -f EiffelActivityStartedEvent.json -en mb-exchange -ce true -mb hostname -domain publish-domain -mp eiffelsemantics -un username -pwd password
 ```
 
 Output for these Example:

@@ -55,6 +55,8 @@ public class RMQHelperUnitTest {
     private static final String usePersistence= "1.2";
     private static final String domainId= "eiffelxxx";
     private static final Integer channelsCount= 1;
+    private static final String username= "guest";
+    private static final String password= "Z3Vlc3Q=";
     private String protocol = "eiffelsemantics";
     private String createExchange = "true";
 
@@ -97,6 +99,8 @@ public class RMQHelperUnitTest {
         System.setProperty(PropertiesConfig.CREATE_EXCHANGE_IF_NOT_EXISTING, createExchange);
         System.setProperty(PropertiesConfig.DOMAIN_ID, domainId);
         System.setProperty(PropertiesConfig.CHANNELS_COUNT, Integer.toString(channelsCount));
+        System.setProperty(PropertiesConfig.USERNAME, username);
+        System.setProperty(PropertiesConfig.PASSWORD, password);
     }
 
     private void cleanProperties() {
@@ -111,6 +115,8 @@ public class RMQHelperUnitTest {
         System.clearProperty(PropertiesConfig.CREATE_EXCHANGE_IF_NOT_EXISTING);
         System.clearProperty(PropertiesConfig.DOMAIN_ID);
         System.clearProperty(PropertiesConfig.CHANNELS_COUNT);
+        System.setProperty(PropertiesConfig.USERNAME, username);
+        System.setProperty(PropertiesConfig.PASSWORD, password);
     }
 
     @Test public void getHostTest() {
@@ -149,7 +155,7 @@ public class RMQHelperUnitTest {
     }
 
     @Test public void setTlsVersionTest() {
-        String tlsVersion = "1.1";
+        String tlsVersion = "1.2";
         rmqHelper.rabbitMqPropertiesMap.get(protocol).setTlsVer(tlsVersion);
         assertTrue(rmqHelper.rabbitMqPropertiesMap.get(protocol).getTlsVer().equals(tlsVersion));
     }
@@ -170,7 +176,7 @@ public class RMQHelperUnitTest {
         String host = "HOSTC";
         Integer portNumber = 1928;
         String virtHost = "/eiffel/test2";
-        String tlsVersion = "1.0";
+        String tlsVersion = "1.2";
         String exchangeNameTest = "EN2";
         String usePersistenceTest = "false";
 
