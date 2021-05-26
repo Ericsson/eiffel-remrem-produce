@@ -6,13 +6,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.eiffel-community</groupId>
-        <artifactId>eiffel-remrem-publish</artifactId>
+        <artifactId>eiffel-remrem-publish-root</artifactId>
         <version>${eiffel-remrem-publish.version}</version>
     </parent>
     <properties>
         <start-class>com.ericsson.eiffel.remrem.publish</start-class>
     </properties>
-    <artifactId>publish-service</artifactId>
+    <artifactId>eiffel-remrem-publish</artifactId>
     <packaging>war</packaging>
     <dependencies>
         <dependency>

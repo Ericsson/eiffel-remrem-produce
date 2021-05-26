@@ -13,7 +13,7 @@
         <eiffel-remrem-shared.version>2.0.5</eiffel-remrem-shared.version>
         <eiffel-remrem-semantics.version>2.0.13</eiffel-remrem-semantics.version>
     </properties>
-    <artifactId>eiffel-remrem-publish</artifactId>
+    <artifactId>eiffel-remrem-publish-root</artifactId>
     <version>${eiffel-remrem-publish.version}</version>
     <packaging>pom</packaging>
     <modules>
